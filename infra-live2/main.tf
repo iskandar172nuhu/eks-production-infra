@@ -49,3 +49,10 @@ module "database" {
   db_instance_class = var.db_instance_class
   allocated_storage = var.allocated_storage
 }
+
+module "ecr" {
+  source = "../modules/ecr"
+
+  project_name = var.project_name
+  environment  = var.environment
+}

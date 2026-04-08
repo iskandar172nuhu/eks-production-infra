@@ -33,3 +33,11 @@ output "db_instance_endpoint" {
 output "db_instance_identifier" {
   value = module.database.db_instance_identifier
 }
+
+output "ecr_repository_url" {
+  value = module.ecr.repository_url
+}
+
+output "ecr_repository_name" {
+  value = module.ecr.repository_name
+}

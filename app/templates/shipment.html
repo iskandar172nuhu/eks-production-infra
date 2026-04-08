@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipment Lookup - IA Bestsell Logistics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Shipment Lookup</h1>
+
+      {% if shipment %}
+        <div class="shipment-card single">
+          <h2>{{ shipment.id }}</h2>
+          <p><strong>Customer:</strong> {{ shipment.customer }}</p>
+          <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+          <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+          <p><strong>Status:</strong> <span class="status">{{ shipment.status }}</span></p>
+        </div>
+      {% elif shipment_id %}
+        <p>No shipment found for ID <strong>{{ shipment_id }}</strong>.</p>
+      {% else %}
+        <p>No shipment ID provided.</p>
+      {% endif %}
+
+      <a href="/" class="btn secondary">Back to Home</a>
+    </section>
+  </main>
+</body>
+</html>

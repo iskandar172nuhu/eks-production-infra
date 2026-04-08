@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Bestsell Logistics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>IA Bestsell Logistics</h1>
+      <p>Reliable movement, smarter delivery, real-time visibility.</p>
+      <a href="#track" class="btn">Track a Shipment</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card intro">
+      <h2>About Us</h2>
+      <p>
+        IA Bestsell Logistics provides dependable freight coordination, shipment tracking,
+        and distribution support across key UK cities. This platform demonstrates a simple
+        logistics dashboard that can later evolve into a company website and operations portal.
+      </p>
+    </section>
+
+    <section id="track" class="card">
+      <h2>Track Shipment</h2>
+      <form action="/shipment" method="get" class="track-form">
+        <input type="text" name="id" placeholder="Enter Shipment ID e.g. IA1001" required>
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Live Shipment Overview</h2>
+      <div class="shipment-grid">
+        {% for shipment in shipments %}
+        <div class="shipment-card">
+          <h3>{{ shipment.id }}</h3>
+          <p><strong>Customer:</strong> {{ shipment.customer }}</p>
+          <p><strong>Route:</strong> {{ shipment.origin }} → {{ shipment.destination }}</p>
+          <p><strong>Status:</strong> <span class="status">{{ shipment.status }}</span></p>
+          <a href="/shipment?id={{ shipment.id }}" class="small-link">View Details</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>
