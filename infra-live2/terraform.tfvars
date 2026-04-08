@@ -19,3 +19,9 @@ availability_zones = [
   "eu-west-2a",
   "eu-west-2b"
 ]
+
+db_name           = "platformdb"
+db_username       = "platformadmin"
+db_password       = "ChangeMe123456!"
+db_instance_class = "db.t3.micro"
+allocated_storage = 20

@@ -3,6 +3,8 @@
 *.tfstate
 *.tfstate.*
 crash.log
+*.tfvars
+infra-live2/terraform.tfvars
 
 # OS
 .DS_Store

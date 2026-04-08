@@ -25,3 +25,11 @@ output "eks_cluster_endpoint" {
 output "eks_node_group_name" {
   value = module.eks.node_group_name
 }
+
+output "db_instance_endpoint" {
+  value = module.database.db_instance_endpoint
+}
+
+output "db_instance_identifier" {
+  value = module.database.db_instance_identifier
+}
