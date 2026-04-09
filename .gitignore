@@ -19,4 +19,4 @@ __pycache__/
 #Docker
 venv/
 app/venv/
-app/.pytest_cache/clea
+app/.pytest_cache/
