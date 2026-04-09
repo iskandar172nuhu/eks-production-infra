@@ -1,0 +1,57 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: grip-platform-dev-app
+          IMAGE_TAG: latest
+        run: |
+          docker buildx create --use --name multiarch-builder || true
+          docker buildx inspect --bootstrap
+          docker buildx build \
+            --platform linux/amd64 \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            . \
+            --push
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --region ${{ vars.AWS_REGION }} --name grip-platform-dev-eks
+        working-directory: .
+
+      - name: Restart Kubernetes deployment
+        run: |
+          kubectl rollout restart deployment ia-bestsell-app -n ia-bestsell
+          kubectl rollout status deployment ia-bestsell-app -n ia-bestsell
+        working-directory: .
