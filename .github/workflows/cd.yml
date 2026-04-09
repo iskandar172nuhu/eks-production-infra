@@ -55,4 +55,3 @@ jobs:
           kubectl rollout restart deployment ia-bestsell-app -n ia-bestsell
           kubectl rollout status deployment ia-bestsell-app -n ia-bestsell
         working-directory: .
-        
