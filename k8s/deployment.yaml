@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ia-bestsell-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ia-bestsell-app
