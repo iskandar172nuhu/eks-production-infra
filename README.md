@@ -1,4 +1,6 @@
 # 🚀 EKS Production Platform – IA Bestsell Logistics
+
+![CI](https://github.com/iskandar172nuhu/eks-production-infra/actions/workflows/deploy.yml/badge.svg)
 ![AWS](https://img.shields.io/badge/AWS-EKS-orange?logo=amazon-aws)
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-blue?logo=terraform)
 ![Docker](https://img.shields.io/badge/Container-Docker-blue?logo=docker)
