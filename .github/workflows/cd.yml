@@ -50,8 +50,10 @@ jobs:
           aws eks update-kubeconfig --region ${{ vars.AWS_REGION }} --name grip-platform-dev-eks
         working-directory: .
 
-      - name: Restart Kubernetes deployment
+      - name: Deploy Kubernetes manifests
         run: |
-          kubectl rollout restart deployment ia-bestsell-app -n ia-bestsell
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
           kubectl rollout status deployment ia-bestsell-app -n ia-bestsell
         working-directory: .
