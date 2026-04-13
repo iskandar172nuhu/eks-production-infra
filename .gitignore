@@ -20,4 +20,3 @@ __pycache__/
 venv/
 app/venv/
 app/.pytest_cache/
-
