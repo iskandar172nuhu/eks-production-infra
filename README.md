@@ -13,7 +13,7 @@ This repository provides a **production-grade Infrastructure and Application dep
 
 It demonstrates how to design, provision, and operate a **secure, scalable Kubernetes environment (Amazon EKS)** using Infrastructure as Code and automated CI/CD pipelines.
 
-The platform is fully automated using **Terraform for infrastructure provisioning**, **Docker for containerization**, and **GitHub Actions with OIDC for secure deployments**, eliminating the need for static credentials.
+The platform is fully automated using **Terraform for infrastructure provisioning**, **Docker for containerization**, and **GitHub Actions with OIDC for secure deployments**, eliminating the need for static credentials
 
 ---
 
